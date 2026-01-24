@@ -2,17 +2,26 @@
 
 import { useState } from 'react'
 import { services } from '@/data/services'
-import { ChartBar, Users, Video, Palette, Mic, Languages, CalendarCheck } from 'lucide-react'
+import { 
+  ChartBarIcon, 
+  UsersIcon, 
+  VideoIcon, 
+  PaletteIcon, 
+  MicIcon, 
+  LanguagesIcon, 
+  CalendarCheckIcon 
+} from 'lucide-react'
 import Link from 'next/link'
 
-const iconMap = {
-  ChartBar,
-  Users,
-  Video,
-  Palette,
-  Mic,
-  Languages,
-  CalendarCheck,
+// Map emoji strings to icon components
+const emojiToIconMap: Record<string, React.ComponentType<any>> = {
+  '📊': ChartBarIcon,     // Feasibility Study
+  '👥': UsersIcon,       // Capacity Building & Training
+  '🎥': VideoIcon,       // Content Production
+  '🎨': PaletteIcon,     // Branding & Printing Services
+  '🎤': MicIcon,         // Media Relations
+  '🌐': LanguagesIcon,   // Translation & Transcribing
+  '📅': CalendarCheckIcon // Event Coordination
 }
 
 export default function ServicesPage() {
@@ -34,7 +43,7 @@ export default function ServicesPage() {
           <div className="lg:col-span-1">
             <div className="sticky top-32 space-y-4">
               {services.map((service) => {
-                const Icon = iconMap[service.icon as keyof typeof iconMap]
+                const Icon = emojiToIconMap[service.icon]
                 return (
                   <button
                     key={service.id}
@@ -46,7 +55,11 @@ export default function ServicesPage() {
                     }`}
                   >
                     <div className="flex items-center">
-                      <Icon className="mr-3" size={20} />
+                      {Icon ? (
+                        <Icon className="mr-3" size={20} />
+                      ) : (
+                        <span className="mr-3 text-xl">{service.icon}</span>
+                      )}
                       <span className="font-medium">{service.title}</span>
                     </div>
                   </button>
@@ -58,14 +71,18 @@ export default function ServicesPage() {
           {/* Service Details */}
           <div className="lg:col-span-2">
             {services.map((service) => {
-              const Icon = iconMap[service.icon as keyof typeof iconMap]
+              const Icon = emojiToIconMap[service.icon]
               if (selectedService !== service.id) return null
               
               return (
                 <div key={service.id} className="bg-white rounded-2xl shadow-lg p-8">
                   <div className="flex items-center mb-6">
                     <div className="p-3 bg-primary/10 rounded-lg mr-4">
-                      <Icon className="text-primary" size={32} />
+                      {Icon ? (
+                        <Icon className="text-primary" size={32} />
+                      ) : (
+                        <span className="text-2xl">{service.icon}</span>
+                      )}
                     </div>
                     <div>
                       <h2 className="text-3xl font-bold">{service.title}</h2>
@@ -79,17 +96,10 @@ export default function ServicesPage() {
                     <div className="bg-gray-50 p-6 rounded-xl mb-8">
                       <h3 className="text-xl font-bold mb-4">What We Offer</h3>
                       <ul className="space-y-3">
-                        {[
-                          'Comprehensive research and analysis',
-                          'Stakeholder engagement strategies',
-                          'Detailed project planning',
-                          'Risk assessment and mitigation',
-                          'Implementation roadmap',
-                          'Monitoring and evaluation framework'
-                        ].map((item, index) => (
+                        {service.features.map((feature, index) => (
                           <li key={index} className="flex items-center">
                             <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                            {item}
+                            {feature}
                           </li>
                         ))}
                       </ul>
@@ -114,7 +124,7 @@ export default function ServicesPage() {
                       <div className="flex flex-col sm:flex-row gap-4">
                         <Link
                           href="/contact"
-                          className="btn-primary inline-flex items-center justify-center"
+                          className="bg-primary text-white hover:bg-primary/90 px-6 py-3 rounded-lg font-semibold inline-flex items-center justify-center transition-all"
                         >
                           Request a Quote
                         </Link>
@@ -141,7 +151,7 @@ export default function ServicesPage() {
           </p>
           <Link
             href="/contact"
-            className="btn-primary inline-flex items-center px-8 py-4 text-lg"
+            className="bg-primary text-white hover:bg-primary/90 px-8 py-4 text-lg rounded-lg font-semibold inline-flex items-center transition-all"
           >
             Get Custom Package
           </Link>

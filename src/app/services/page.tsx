@@ -48,13 +48,13 @@ export default function ServicesPage() {
                   <button
                     key={service.id}
                     onClick={() => setSelectedService(service.id)}
-                    className={`w-full text-left p-4 rounded-lg transition-all ${
+                    className={`w-full text-left text-gray-600 p-4 rounded-lg transition-all ${
                       selectedService === service.id
                         ? 'bg-primary text-white shadow-lg'
                         : 'bg-gray-50 hover:bg-gray-100'
                     }`}
                   >
-                    <div className="flex items-center">
+                    <div className="flex items-center ">
                       {Icon ? (
                         <Icon className="mr-3" size={20} />
                       ) : (
@@ -69,7 +69,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Service Details */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 ">
             {services.map((service) => {
               const Icon = emojiToIconMap[service.icon]
               if (selectedService !== service.id) return null
@@ -77,15 +77,15 @@ export default function ServicesPage() {
               return (
                 <div key={service.id} className="bg-white rounded-2xl shadow-lg p-8">
                   <div className="flex items-center mb-6">
-                    <div className="p-3 bg-primary/10 rounded-lg mr-4">
+                    <div className="p-3 bg-primary/10 rounded-lg ">
                       {Icon ? (
-                        <Icon className="text-primary" size={32} />
+                        <Icon className="text-primary " size={32} />
                       ) : (
                         <span className="text-2xl">{service.icon}</span>
                       )}
                     </div>
                     <div>
-                      <h2 className="text-3xl font-bold">{service.title}</h2>
+                      <h2 className="text-3xl text-gray-600 font-bold">{service.title}</h2>
                       <p className="text-gray-600">{service.description}</p>
                     </div>
                   </div>
@@ -94,10 +94,10 @@ export default function ServicesPage() {
                     <p className="text-lg text-gray-700 mb-6">{service.detailedDescription}</p>
                     
                     <div className="bg-gray-50 p-6 rounded-xl mb-8">
-                      <h3 className="text-xl font-bold mb-4">What We Offer</h3>
+                      <h3 className="text-xl text-gray-600 font-bold mb-4">What We Offer</h3>
                       <ul className="space-y-3">
                         {service.features.map((feature, index) => (
-                          <li key={index} className="flex items-center">
+                          <li key={index} className="flex items-center text-gray-600">
                             <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
                             {feature}
                           </li>

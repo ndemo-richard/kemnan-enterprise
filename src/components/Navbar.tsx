@@ -1,10 +1,11 @@
-// src/components/Navbar.tsx - WITH GRADIENT BACKGROUND
+// src/components/Navbar.tsx - WITH GRADIENT BACKGROUND AND LOGO
 'use client'
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X, Phone, ChevronDown } from 'lucide-react'
+import Image from 'next/image'
 
 const navItems = [
   { name: 'Home', href: '/' },
@@ -62,15 +63,26 @@ export default function Navbar() {
       } text-white`}>
         <div className="container-custom">
           <div className="flex justify-between items-center">
-            {/* Logo - White text on gradient */}
+            {/* Logo with Image */}
             <Link href="/" className="flex items-center space-x-3">
-              <div className="flex flex-col">
-                <span className="text-2xl font-bold text-white">KEMNAN</span>
-                <span className="text-xs text-white/80 font-medium">ENTERPRISE</span>
+              {/* Logo Image - Option 1: Single Logo */}
+              <div className="relative h-10 w-10 sm:h-12 sm:w-12">
+                <Image
+                  src="/images/logo/logo.jpg" // or /logo.svg, /logo.jpg, etc.
+                  alt="KEMNAN Enterprise Logo"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 40px, 48px"
+                  priority
+                />
               </div>
+              
+              {/* Separator */}
               <div className="hidden sm:block">
                 <div className="h-8 w-px bg-white/30"></div>
               </div>
+              
+              {/* Tagline */}
               <div className="hidden sm:block">
                 <span className="text-sm text-white/90">Development Communication</span>
               </div>

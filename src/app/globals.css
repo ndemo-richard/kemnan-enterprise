@@ -66,6 +66,10 @@ body {
 
 /* Custom utility classes with your colors */
 @layer utilities {
+
+  .text-accent {
+    color: #f59e0b; /* Your accent color */
+  }
   .btn-primary {
     background-color: var(--primary);
     color: white;

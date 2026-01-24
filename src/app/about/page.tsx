@@ -16,12 +16,12 @@ export default function AboutPage() {
 
         {/* Story */}
         <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-16">
-          <h2 className="text-3xl font-bold mb-8">Our Story</h2>
+          <h2 className="text-3xl text-gray-600 font-bold mb-8">Our Story</h2>
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <p className="text-lg text-gray-700 mb-4">
-                Founded in {companyInfo.founded} in {companyInfo.location} by{' '}
-                <span className="font-semibold text-primary">{companyInfo.founder}</span>, Kemnan Enterprise was established on the grounds of utmost professionalism, integrity, and honesty.
+                Founded in {companyInfo.founded} in {companyInfo.location}
+               , Kemnan Enterprise was established on the grounds of utmost professionalism, integrity, and honesty.
               </p>
               <p className="text-gray-600 mb-6">
                 We are committed to delivering excellence in all areas of our business and pride ourselves on the knowledge, skills, and expertise of our employees who work together as a team delivering successful projects.
@@ -29,21 +29,21 @@ export default function AboutPage() {
               <div className="space-y-3">
                 <div className="flex items-center">
                   <CheckCircle className="text-green-500 mr-3" size={20} />
-                  <span>Serving Government & Private Sector</span>
+                  <span className="text-gray-600">Serving Government & Private Sector</span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="text-green-500 mr-3" size={20} />
-                  <span>18+ Years Collective Experience</span>
+                  <span className="text-gray-600">18+ Years Collective Experience</span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="text-green-500 mr-3" size={20} />
-                  <span>Flexible & Responsive Approach</span>
+                  <span className="text-gray-600">Flexible & Responsive Approach</span>
                 </div>
               </div>
             </div>
             <div className="bg-primary/10 p-8 rounded-xl">
               <h3 className="text-2xl font-bold mb-6 text-center text-primary">Our Focus</h3>
-              <div className="space-y-4">
+              <div className="className= text-gray-600 space-y-4">
                 {[
                   'Audio-Visual Content Production',
                   'Event Coordination',

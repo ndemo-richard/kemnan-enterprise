@@ -14,13 +14,14 @@ const navItems = [
     name: 'Services', 
     href: '/services',
     dropdown: [
-      { name: 'Feasibility Study', href: '/services#feasibility-study' },
-      { name: 'Capacity Building', href: '/services#capacity-building' },
-      { name: 'Content Production', href: '/services#content-production' },
-      { name: 'Branding & Printing', href: '/services#branding-printing' },
       { name: 'Media Relations', href: '/services#media-relations' },
-      { name: 'Translation Services', href: '/services#translation' },
+      { name: 'Capacity Building', href: '/services#capacity-building' },
       { name: 'Event Coordination', href: '/services#event-coordination' },
+      { name: 'Content Production', href: '/services#content-production' },
+      { name: 'Feasibility Study', href: '/services#feasibility-study' },
+      { name: 'Branding & Printing', href: '/services#branding-printing' },
+      { name: 'Translation Services', href: '/services#translation' },
+     
     ]
   },
   { name: 'Experience', href: '/experience' },

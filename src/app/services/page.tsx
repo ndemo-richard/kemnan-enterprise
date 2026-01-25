@@ -15,7 +15,6 @@ import {
   Smartphone
 } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 
 // Map emoji strings to icon components
 const emojiToIconMap: Record<string, React.ComponentType<any>> = {
@@ -29,7 +28,6 @@ const emojiToIconMap: Record<string, React.ComponentType<any>> = {
 }
 
 export default function ServicesPage() {
-  const router = useRouter()
   const [selectedService, setSelectedService] = useState<number | null>(null)
   const [isMobileModalOpen, setIsMobileModalOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -47,32 +45,7 @@ export default function ServicesPage() {
     return () => window.removeEventListener('resize', checkIfMobile)
   }, [])
 
-  // Handle browser back button
-  useEffect(() => {
-    if (!isMobileModalOpen) return
-
-    const handlePopState = (event: PopStateEvent) => {
-      event.preventDefault()
-      closeMobileModal()
-    }
-
-    // Push state to browser history when modal opens
-    window.history.pushState({ modalOpen: true }, '')
-
-    // Add event listener for back button
-    window.addEventListener('popstate', handlePopState)
-
-    return () => {
-      window.removeEventListener('popstate', handlePopState)
-      
-      // Only go back if we're still on the modal state
-      if (window.history.state?.modalOpen) {
-        window.history.back()
-      }
-    }
-  }, [isMobileModalOpen])
-
-  // Also handle Escape key
+  // Handle Escape key
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && isMobileModalOpen) {
@@ -97,11 +70,6 @@ export default function ServicesPage() {
   const closeMobileModal = useCallback(() => {
     setIsMobileModalOpen(false)
     document.body.style.overflow = 'auto'
-    
-    // Remove the modal state from history
-    if (window.history.state?.modalOpen) {
-      window.history.back()
-    }
   }, [])
 
   const selectedServiceData = services.find(s => s.id === selectedService)
@@ -185,7 +153,67 @@ export default function ServicesPage() {
                 
                 return (
                   <div key={service.id} className="bg-white rounded-2xl shadow-lg p-8">
-                    {/* ... desktop content (same as before) ... */}
+                    <div className="flex items-center mb-6">
+                      <div className="p-3 bg-primary/10 rounded-lg mr-4">
+                        {Icon ? (
+                          <Icon className="text-primary" size={32} />
+                        ) : (
+                          <span className="text-2xl">{service.icon}</span>
+                        )}
+                      </div>
+                      <div>
+                        <h2 className="text-3xl text-gray-600 font-bold">{service.title}</h2>
+                        <p className="text-gray-600">{service.description}</p>
+                      </div>
+                    </div>
+
+                    <div className="prose max-w-none">
+                      <p className="text-lg text-gray-700 mb-6">{service.detailedDescription}</p>
+                      
+                      <div className="bg-gray-50 p-6 rounded-xl mb-8">
+                        <h3 className="text-xl text-gray-600 font-bold mb-4">What We Offer</h3>
+                        <ul className="space-y-3">
+                          {service.features.map((feature, index) => (
+                            <li key={index} className="flex items-center text-gray-600">
+                              <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-6 mb-8">
+                        <div className="bg-primary/5 p-6 rounded-xl">
+                          <h4 className="font-bold mb-3 text-primary">Delivery Approach</h4>
+                          <p className="text-gray-700">We follow a structured methodology involving initial consultation, detailed planning, execution, and evaluation phases.</p>
+                        </div>
+                        <div className="bg-primary/5 p-6 rounded-xl">
+                          <h4 className="font-bold mb-3 text-primary">Timeline</h4>
+                          <p className="text-gray-700">Projects typically range from 2-8 weeks depending on scope and complexity. We provide regular progress updates.</p>
+                        </div>
+                      </div>
+
+                      <div className="mt-8 pt-8 border-t">
+                        <h3 className="text-xl text-gray-600 font-bold mb-4">Get Started</h3>
+                        <p className="text-gray-600 mb-6">
+                          Ready to leverage our {service.title.toLowerCase()} expertise for your project?
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4">
+                          <Link
+                            href="/contact"
+                            className="bg-primary text-white hover:bg-primary/90 px-6 py-3 rounded-lg font-semibold inline-flex items-center justify-center transition-all"
+                          >
+                            Request a Quote
+                          </Link>
+                          <Link
+                            href="/portfolio"
+                            className="border-2 border-primary text-primary hover:bg-primary/5 px-6 py-3 rounded-lg font-semibold text-center transition-all"
+                          >
+                            View Similar Projects
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )
               })
@@ -242,8 +270,13 @@ export default function ServicesPage() {
                   <span className="font-semibold text-gray-900">{selectedServiceData.title}</span>
                 </div>
                 
+                {/* Fixed X button */}
                 <button
-                  onClick={closeMobileModal}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    closeMobileModal()
+                  }}
                   className="p-2 rounded-full hover:bg-gray-100 transition-colors"
                   aria-label="Close modal"
                 >
@@ -287,20 +320,24 @@ export default function ServicesPage() {
                       Ready to leverage our {selectedServiceData.title.toLowerCase()} expertise for your project?
                     </p>
                     <div className="flex flex-col gap-4">
-                      <Link
-                        href="/contact"
+                      <button
+                        onClick={() => {
+                          closeMobileModal()
+                          window.location.href = '/contact'
+                        }}
                         className="bg-primary text-white hover:bg-primary/90 px-6 py-3 rounded-lg font-semibold inline-flex items-center justify-center transition-all text-center"
-                        onClick={closeMobileModal}
                       >
                         Request a Quote
-                      </Link>
-                      <Link
-                        href="/portfolio"
+                      </button>
+                      <button
+                        onClick={() => {
+                          closeMobileModal()
+                          window.location.href = '/portfolio'
+                        }}
                         className="border-2 border-primary text-primary hover:bg-primary/5 px-6 py-3 rounded-lg font-semibold text-center transition-all"
-                        onClick={closeMobileModal}
                       >
                         View Similar Projects
-                      </Link>
+                      </button>
                     </div>
                     
                     {/* View Full Page Link */}
@@ -308,10 +345,8 @@ export default function ServicesPage() {
                       <button
                         onClick={() => {
                           closeMobileModal()
-                          // Navigate to full services page after a brief delay
-                          setTimeout(() => {
-                            router.push(`/services#${selectedServiceData.title.toLowerCase().replace(/\s+/g, '-')}`)
-                          }, 300)
+                          const hash = `#${selectedServiceData.title.toLowerCase().replace(/\s+/g, '-')}`
+                          window.location.href = `/services${hash}`
                         }}
                         className="flex items-center justify-center w-full text-primary font-medium hover:text-primary/80 py-2"
                       >

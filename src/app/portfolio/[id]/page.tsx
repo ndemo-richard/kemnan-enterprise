@@ -1,20 +1,29 @@
 import { notFound } from 'next/navigation'
-import { getPortfolioItemById } from '@/data/portfolio'
-import { Calendar, MapPin, Users, CheckCircle, ArrowLeft, Share2 } from 'lucide-react'
+import { getPortfolioItemById, portfolioItems } from '@/data/portfolio'
+import { Calendar, MapPin, Users, CheckCircle, ArrowLeft, Share2, Building } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface PortfolioDetailPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
-export default function PortfolioDetailPage({ params }: PortfolioDetailPageProps) {
-  const portfolioItem = getPortfolioItemById(parseInt(params.id))
+export default async function PortfolioDetailPage({ params }: PortfolioDetailPageProps) {
+  // Unwrap the params promise
+  const { id } = await params
+  
+  const portfolioItem = getPortfolioItemById(id)
   
   if (!portfolioItem) {
     notFound()
   }
+
+  // Find related projects (same category, excluding current)
+  const relatedProjects = portfolioItems
+    .filter(item => item.id !== id && item.category === portfolioItem.category)
+    .slice(0, 3)
 
   return (
     <div className="pt-32 pb-20">
@@ -29,20 +38,40 @@ export default function PortfolioDetailPage({ params }: PortfolioDetailPageProps
 
         {/* Project Header */}
         <div className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <div>
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-8">
+            <div className="flex-1">
               <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full font-medium mb-3">
                 {portfolioItem.category}
               </span>
-              <h1 className="text-4xl font-bold">{portfolioItem.title}</h1>
+              <h1 className="text-4xl font-bold mb-4">{portfolioItem.title}</h1>
+              
+              {/* Client Logo and Name */}
+              <div className="flex items-center mb-6">
+                <div className="w-16 h-16 bg-white rounded-full p-3 shadow-md mr-4">
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={portfolioItem.logo}
+                      alt={portfolioItem.logoAlt || `${portfolioItem.client} Logo`}
+                      fill
+                      className="object-contain"
+                      sizes="64px"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center text-gray-600">
+                    <Building className="mr-2" size={18} />
+                    <span className="font-medium">Client:</span>
+                  </div>
+                  <div className="text-xl font-bold">{portfolioItem.client}</div>
+                </div>
+              </div>
             </div>
+            
             <div className="text-right">
               <span className="text-3xl font-bold text-primary">{portfolioItem.year}</span>
             </div>
           </div>
-
-          {/* Project Image */}
-          <div className="aspect-video bg-gradient-to-br from-primary to-secondary rounded-2xl mb-8"></div>
 
           {/* Project Details */}
           <div className="grid md:grid-cols-3 gap-6 mb-8">
@@ -77,7 +106,17 @@ export default function PortfolioDetailPage({ params }: PortfolioDetailPageProps
             <div className="mb-12">
               <h2 className="text-2xl font-bold mb-6">Project Overview</h2>
               <div className="prose max-w-none">
-                <p className="text-lg text-gray-700">{portfolioItem.description}</p>
+                <p className="text-lg text-gray-700 mb-6">{portfolioItem.description}</p>
+                
+                {portfolioItem.detailedDescription && (
+                  <div className="mt-8 space-y-4">
+                    {portfolioItem.detailedDescription.split('\n\n').map((paragraph, index) => (
+                      <p key={index} className="text-gray-700 leading-relaxed">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -86,7 +125,7 @@ export default function PortfolioDetailPage({ params }: PortfolioDetailPageProps
               <h2 className="text-2xl font-bold mb-6">Services Provided</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {portfolioItem.services.map((service, index) => (
-                  <div key={index} className="bg-gray-50 p-4 rounded-lg flex items-center">
+                  <div key={index} className="bg-gray-700 p-4 rounded-lg flex items-center">
                     <CheckCircle className="text-primary mr-3" size={20} />
                     <span>{service}</span>
                   </div>
@@ -115,7 +154,7 @@ export default function PortfolioDetailPage({ params }: PortfolioDetailPageProps
           <div className="lg:col-span-1">
             <div className="sticky top-32 space-y-8">
               {/* Project Summary */}
-              <div className="bg-gray-50 rounded-2xl p-6">
+              <div className="bg-gray-700 rounded-2xl p-6">
                 <h3 className="text-xl font-bold mb-4">Project Summary</h3>
                 <div className="space-y-4">
                   <div>
@@ -123,12 +162,12 @@ export default function PortfolioDetailPage({ params }: PortfolioDetailPageProps
                     <div className="font-medium">{portfolioItem.category}</div>
                   </div>
                   <div>
-                    <div className="text-sm text-gray-500 mb-1">Duration</div>
-                    <div className="font-medium">3-6 Months</div>
+                    <div className="text-sm text-gray-500 mb-1">Client</div>
+                    <div className="font-medium">{portfolioItem.client}</div>
                   </div>
                   <div>
-                    <div className="text-sm text-gray-500 mb-1">Team Size</div>
-                    <div className="font-medium">5-10 Professionals</div>
+                    <div className="text-sm text-gray-500 mb-1">Location</div>
+                    <div className="font-medium">{portfolioItem.location}</div>
                   </div>
                   <div>
                     <div className="text-sm text-gray-500 mb-1">Status</div>
@@ -156,25 +195,24 @@ export default function PortfolioDetailPage({ params }: PortfolioDetailPageProps
                       <button className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200">
                         <Share2 size={20} />
                       </button>
-                      {/* Add social share buttons */}
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Testimonial (Optional) */}
-              <div className="bg-white border rounded-2xl p-6">
-                <h3 className="text-xl font-bold mb-4">Client Feedback</h3>
-                <p className="text-gray-600 italic mb-4">
-                  "Kemnan Enterprise delivered exceptional results for our project. Their professionalism and attention to detail were outstanding."
-                </p>
-                <div className="flex items-center">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold mr-3">
-                    {portfolioItem.client.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div>
-                    <div className="font-medium">{portfolioItem.client}</div>
-                    <div className="text-sm text-gray-500">Project Client</div>
+              {/* Client Logo Display */}
+              <div className=" border rounded-2xl p-6">
+                <div className="flex items-center justify-center">
+                  <div className="w-40 h-40 bg-gray-50 rounded-full p-6">
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={portfolioItem.logo}
+                        alt={portfolioItem.logoAlt || `${portfolioItem.client} Logo`}
+                        fill
+                        className="object-contain"
+                        sizes="160px"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -183,33 +221,43 @@ export default function PortfolioDetailPage({ params }: PortfolioDetailPageProps
         </div>
 
         {/* Related Projects */}
-        <div className="mt-16">
-          <h2 className="text-2xl font-bold mb-8">Related Projects</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* You can add related projects logic here */}
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="font-bold mb-2">Similar Project 1</h3>
-              <p className="text-gray-600 text-sm mb-4">Brief description of related project...</p>
-              <Link href="#" className="text-primary text-sm font-medium">
-                View Project →
-              </Link>
-            </div>
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="font-bold mb-2">Similar Project 2</h3>
-              <p className="text-gray-600 text-sm mb-4">Brief description of related project...</p>
-              <Link href="#" className="text-primary text-sm font-medium">
-                View Project →
-              </Link>
-            </div>
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="font-bold mb-2">Similar Project 3</h3>
-              <p className="text-gray-600 text-sm mb-4">Brief description of related project...</p>
-              <Link href="#" className="text-primary text-sm font-medium">
-                View Project →
-              </Link>
+        {relatedProjects.length > 0 && (
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold mb-8">Related Projects</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {relatedProjects.map((project) => (
+                <Link
+                  key={project.id}
+                  href={`/portfolio/${project.id}`}
+                  className="bg-gray-900 rounded-xl p-6 hover:bg-white hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-white rounded-full p-2 mr-3">
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={project.logo}
+                          alt={project.client}
+                          fill
+                          className="object-contain"
+                          sizes="48px"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="font-bold">{project.client.split(' / ')[0]}</h3>
+                      <p className="text-gray-600 text-sm">{project.category}</p>
+                    </div>
+                  </div>
+                  <h4 className="font-semibold mb-2">{project.title}</h4>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">{project.description}</p>
+                  <span className="text-primary text-sm font-medium">
+                    View Project →
+                  </span>
+                </Link>
+              ))}
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   )

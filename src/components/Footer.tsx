@@ -31,15 +31,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/Our Work" className="text-gray-400 hover:text-secondary">
+                  Portfolio
+                </Link>
+              </li>
+              <li>
                 <Link href="/services" className="text-gray-400 hover:text-secondary">
                   Services
                 </Link>
               </li>
-              <li>
-                <Link href="/portfolio" className="text-gray-400 hover:text-secondary">
-                  Portfolio
-                </Link>
-              </li>
+        
               <li>
                 <Link href="/contact" className="text-gray-400 hover:text-secondary">
                   Contact

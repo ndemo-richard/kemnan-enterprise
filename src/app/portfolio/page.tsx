@@ -1,8 +1,9 @@
 'use client'
 import { useState } from 'react'
 import { portfolioItems, portfolioCategories } from '@/data/portfolio'
-import { Calendar, MapPin, Users, ArrowRight } from 'lucide-react'
+import { Calendar, MapPin, Users, ArrowRight, Building } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function PortfolioPage() {
   const [selectedCategory, setSelectedCategory] = useState('All Projects')
@@ -18,9 +19,10 @@ export default function PortfolioPage() {
       <div className="container-custom">
         {/* Hero */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold mb-6">Our Portfolio</h1>
+          <h1 className="text-5xl font-bold mb-6">Our Work</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Showcasing successful projects that created impact through innovative development communication
+          Kemnan Consultancy has a strong track record in strategic communications, media production, advocacy support, and regional media placement. We have worked with government institutions, international development organizations, foundations, and civil society groups across Africa to deliver high-impact communication campaigns.
+
           </p>
         </div>
 
@@ -43,16 +45,30 @@ export default function PortfolioPage() {
           </div>
         </div>
 
-        {/* Projects Grid */}
+        {/* Projects Grid WITH LOGOS */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredItems.map((project) => (
             <div
               key={project.id}
               className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all card-hover group"
             >
-              {/* Project Header */}
+              {/* Project Header WITH LOGO */}
               <div className="h-48 bg-gradient-to-br from-primary to-secondary relative overflow-hidden">
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all"></div>
+                
+                {/* Client Logo - Centered */}
+                <div className="absolute inset-0 flex items-center justify-center p-8">
+                  <div className="relative w-32 h-32   p-4 shadow-lg">
+                    <Image
+                      src={project.logo}
+                      alt={project.logoAlt || `${project.client} Logo`}
+                      fill
+                      className="object-contain p-2"
+                      sizes="(max-width: 128px) 100vw, 128px"
+                    />
+                  </div>
+                </div>
+                
                 <div className="absolute top-4 right-4">
                   <span className="bg-white/90 text-primary px-3 py-1 rounded-full text-sm font-medium">
                     {project.category}
@@ -65,7 +81,13 @@ export default function PortfolioPage() {
 
               {/* Project Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                {/* Client Name with Icon */}
+                <div className="flex items-center mb-3">
+                  <Building size={16} className="text-gray-600 mr-2" />
+                  <span className="font-medium text-gray-700">{project.client}</span>
+                </div>
+                
+                <h3 className="text-xl text-gray-700 font-bold mb-3 group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
                 <p className="text-gray-600 mb-6 line-clamp-2">
@@ -74,10 +96,6 @@ export default function PortfolioPage() {
 
                 {/* Project Details */}
                 <div className="space-y-3 mb-6">
-                  <div className="flex items-center text-sm text-gray-500">
-                    <Users size={16} className="mr-2" />
-                    <span>{project.client}</span>
-                  </div>
                   <div className="flex items-center text-sm text-gray-500">
                     <MapPin size={16} className="mr-2" />
                     <span>{project.location}</span>

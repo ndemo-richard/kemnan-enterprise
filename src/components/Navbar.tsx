@@ -10,6 +10,7 @@ import Image from 'next/image'
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
+  { name: 'Our Work', href: '/portfolio' },
   { 
     name: 'Services', 
     href: '/services',
@@ -24,8 +25,8 @@ const navItems = [
      
     ]
   },
-  { name: 'Experience', href: '/experience' },
-  { name: 'Portfolio', href: '/portfolio' },
+  /*{ name: 'Experience', href: '/experience' },*/
+
   { name: 'Contact', href: '/contact' },
 ]
 

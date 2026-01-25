@@ -1,8 +1,23 @@
+// app/about/page.tsx
 import { companyInfo, visionMission, stats } from '@/data/company'
 import { teamMembers } from '@/data/team'
-import { Target, Rocket, Gem, CheckCircle } from 'lucide-react'
+import TeamCard from '@/components/TeamCard'
+import { Target, Rocket, Gem, CheckCircle, Users } from 'lucide-react'
 
 export default function AboutPage() {
+  // Social links for team members (optional - you can add these to team.ts if needed)
+  const socialLinks = {
+    nancy: {
+      linkedin: "https://linkedin.com/in/nancy-onyancha",
+      twitter: "https://twitter.com/nancy_onyancha"
+    },
+    david: {
+      linkedin: "https://linkedin.com/in/david-kimani",
+      twitter: "https://twitter.com/david_kimani"
+    },
+    // Add for other team members as needed
+  }
+
   return (
     <div className="pt-32 pb-20">
       <div className="container-custom">
@@ -45,10 +60,10 @@ export default function AboutPage() {
               <h3 className="text-2xl font-bold mb-6 text-center text-primary">Our Focus</h3>
               <div className="className= text-gray-600 space-y-4">
                 {[
-                  'Audio-Visual Content Production',
-                  'Event Coordination',
-                  'Capacity Building & Training',
                   'Media Relations & Strategy',
+                  'Capacity Building & Training',
+                  'Event Coordination',
+                  'Audio-Visual Content Production',
                   'Feasibility Studies',
                   'Branding & Communication Materials',
                 ].map((item, index) => (
@@ -106,34 +121,109 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Team */}
+        {/* Team Section */}
         <div className="mb-16">
-          <h2 className="text-4xl font-bold text-center mb-12">Our Management Team</h2>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center bg-primary/10 px-6 py-3 rounded-full mb-4">
+              <Users className="text-primary mr-2" size={24} />
+              <h2 className="text-4xl font-bold">Meet Our Team</h2>
+            </div>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Our diverse team of experts brings together decades of experience in development communication, media production, and strategic communications.
+            </p>
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member) => (
-              <div key={member.id} className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div className="h-48 bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-4xl font-bold">
-                  {member.name.split(' ').map(n => n[0]).join('')}
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                  <p className="text-primary font-medium mb-2">{member.position}</p>
-                  <p className="text-gray-500 text-sm mb-4">{member.experience}</p>
-                  <p className="text-gray-600 text-sm">{member.bio}</p>
-                  {member.email && (
-                    <a
-                      href={`mailto:${member.email}`}
-                      className="inline-block mt-4 text-primary hover:text-secondary text-sm font-medium"
-                    >
-                      {member.email}
-                    </a>
-                  )}
-                </div>
-              </div>
+              <TeamCard
+                key={member.id}
+                member={member}
+                socialLinks={getSocialLinks(member.name)}
+              />
             ))}
+          </div>
+
+          {/* Team Stats */}
+          <div className="mt-12 bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="text-4xl font-bold mb-2">{teamMembers.length}</div>
+                <div className="text-sm opacity-90">Team Members</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold mb-2">18+</div>
+                <div className="text-sm opacity-90">Years Experience</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold mb-2">50+</div>
+                <div className="text-sm opacity-90">Projects Completed</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold mb-2">4</div>
+                <div className="text-sm opacity-90">Core Specializations</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Team Culture */}
+        <div className="bg-white rounded-2xl shadow-lg p-8">
+          <h2 className="text-3xl font-bold text-center mb-8">Our Team Culture</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-primary">🤝</span>
+              </div>
+              <h3 className="text-xl font-bold mb-3">Collaboration</h3>
+              <p className="text-gray-600">
+                We work as one team, leveraging each other's strengths to deliver exceptional results for our clients.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-primary">💡</span>
+              </div>
+              <h3 className="text-xl font-bold mb-3">Innovation</h3>
+              <p className="text-gray-600">
+                Constantly exploring new approaches and technologies to enhance our communication strategies.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-primary">🎯</span>
+              </div>
+              <h3 className="text-xl font-bold mb-3">Excellence</h3>
+              <p className="text-gray-600">
+                Committed to the highest standards of quality and professionalism in everything we do.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   )
+}
+
+// Helper function to get social links based on team member name
+function getSocialLinks(name: string) {
+  const socialData: Record<string, { linkedin?: string; twitter?: string }> = {
+    "Nancy Onyancha": {
+      linkedin: "",
+      twitter: ""
+    },
+    "David Kimani": {
+      linkedin: "",
+      twitter: ""
+    },
+    "Sarah Wambui": {
+      linkedin: "",
+      twitter: ""
+    },
+    "James Omondi": {
+      linkedin: "",
+      twitter: ""
+    }
+  }
+
+  return socialData[name] || {}
 }

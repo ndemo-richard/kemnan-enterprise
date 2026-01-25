@@ -16,7 +16,7 @@ export const teamMembers: TeamMember[] = [
     position: "Founder & Director",
     experience: "10+ years in Development Communication",
     bio: "Passionate about creating social impact through strategic communication. Founded Kemnan Enterprise in 2017 to bridge the gap between development organizations and effective communication.",
-    email: "nancy@kemnan.co.ke",
+    email: "kemnan2018@gmail.com",
     profileImage: "/images/team/nancyonyancha.jpg" // Add profile image path
   },
   {

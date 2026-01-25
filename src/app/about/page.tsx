@@ -208,21 +208,10 @@ export default function AboutPage() {
 function getSocialLinks(name: string) {
   const socialData: Record<string, { linkedin?: string; twitter?: string }> = {
     "Nancy Onyancha": {
-      linkedin: "",
-      twitter: ""
+      linkedin: "https://www.linkedin.com/in/kemnan-consultancy-67109a34a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      twitter: "https://x.com/commconsultnt?s=21"
     },
-    "David Kimani": {
-      linkedin: "",
-      twitter: ""
-    },
-    "Sarah Wambui": {
-      linkedin: "",
-      twitter: ""
-    },
-    "James Omondi": {
-      linkedin: "",
-      twitter: ""
-    }
+
   }
 
   return socialData[name] || {}

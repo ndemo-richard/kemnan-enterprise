@@ -24,9 +24,9 @@ export const teamMembers: TeamMember[] = [
     name: "Emma Kerubo",
     position: "Finance and operations",
     experience: "Financial Management & Operational Excellence",
-    bio: "Expert in financial planning, budget management, and operational efficiency. Ensures smooth business operations and financial sustainability for all projects. Implements robust financial systems and processes to support organizational growth and project delivery.",
+    bio:"Finance and operations manager with strong expertise in financial panning, udgeting and operational manaement. She is skilled in streamlining business processes, managing procument and administrative functions and supportin strategic decision making to improve efficiency and drive sustainable business gorwth.",
     email: "",
-    profileImage: "/images/team/user.png"
+    profileImage: "/images/team/emmakerubo.jpg"
   },
   {
     id: 3,

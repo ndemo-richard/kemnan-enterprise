@@ -148,6 +148,50 @@ The media outreach was strategically designed to inform residents and stakeholde
 Our placement strategy included local radio stations, agricultural magazines, and digital platforms that specifically target farming communities. By focusing on practical, actionable information, we helped bridge the information gap between the county government and its agricultural stakeholders, resulting in increased participation in agricultural programs.`
   },
   {
+    id: "nyamira-county-media-training",
+    title: "Media Training for County Officials",
+    description: "Comprehensive media training for Nyamira County executives and departmental communication teams",
+    client: "Nyamira County Government",
+    location: "Nyamira, Kenya",
+    year: "2023",
+    category: "Government",
+    services: ["Media Training", "Crisis Communication", "Interview Preparation", "Strategic Messaging"],
+    impact: [
+      "Enhanced media handling skills for county executives and department heads",
+      "Improved crisis communication preparedness across county departments",
+      "Strengthened consistent messaging and public engagement strategies"
+    ],
+    logo: "/images/clients/logos/nyamira.png",
+    logoAlt: "Nyamira County Government Logo",
+    detailedDescription: `Kemnan Consultancy delivered specialized media training programs for Nyamira County Government executives and communication teams across various departments. The training was designed to enhance the county's overall communication capacity and ensure effective public engagement.
+
+The comprehensive program covered essential media skills including interview techniques, message development, crisis communication strategies, and effective public speaking. We conducted practical simulations, mock interviews, and scenario-based exercises tailored to the specific challenges faced by county government officials.
+
+Participants learned how to effectively communicate complex county initiatives, handle difficult questions from journalists, and develop consistent messaging across all departments. The training also emphasized the importance of transparency and accountability in government communications, equipping officials with the skills to build public trust and effectively showcase county development projects.`
+  },
+  {
+    id: "kise-media-training",
+    title: "Media Training for KISE Workers",
+    description: "Media handling and communication training for Kenya Institute of Special Education (KISE) staff",
+    client: "Kenya Institute of Special Education (KISE)",
+    location: "Nairobi, Kenya",
+    year: "2023",
+    category: "Government",
+    services: ["Media Training", "Interview Skills", "Crisis Communication", "Strategic Messaging"],
+    impact: [
+      "Improved media interview skills for KISE staff across departments",
+      "Enhanced communication strategies for special education advocacy",
+      "Strengthened institutional capacity for public engagement"
+    ],
+    logo: "/images/clients/logos/kise.png",
+    logoAlt: "Kenya Institute of Special Education Logo",
+    detailedDescription: `Kemnan Consultancy conducted specialized media training for staff at the Kenya Institute of Special Education (KISE), focusing on effective media handling and communication strategies in the context of special education advocacy.
+
+The training program addressed the unique challenges of communicating about special education and disability rights, equipping KISE staff with the skills to effectively engage with media while maintaining sensitivity and accuracy. Participants learned interview techniques, message framing, and strategies for translating complex educational concepts into accessible public messaging.
+
+Through practical exercises and simulated interviews, KISE staff gained confidence in representing the institution and advocating for special education needs. The training emphasized the importance of consistent messaging across departments and provided tools for effective crisis communication, ensuring that KISE can effectively communicate its mission, programs, and impact to various stakeholders.`
+  },
+  {
     id: "world-vision",
     title: "Water Bill Translation and Advocacy",
     description: "Translation services for Water Bill to promote clean water access",
@@ -190,6 +234,28 @@ The translations enabled broader public understanding and facilitated meaningful
 The campaign achieved both regional and national coverage through strategic placement in leading broadcast, print, and digital media outlets. We collaborated with trusted community leaders, healthcare professionals, and survivors to develop authentic messaging that resonated with target audiences.
 
 Our media placement strategy included timed broadcasts during community listening hours, partnerships with women-focused media platforms, and innovative digital campaigns that engaged younger audiences. The campaign contributed significantly to increased awareness and behavior change messaging, playing a crucial role in ongoing efforts to eliminate FGM in Kenya.`
+  },
+  {
+    id: "amref-media-training",
+    title: "Media Training for AMREF Advocacy Team",
+    description: "Specialized media training for AMREF Health Africa advocacy team members",
+    client: "AMREF Health Africa",
+    location: "Nairobi, Kenya",
+    year: "2023",
+    category: "International Development",
+    services: ["Media Training", "Advocacy Communication", "Interview Preparation", "Message Development"],
+    impact: [
+      "Enhanced media engagement skills for health advocacy professionals",
+      "Improved ability to communicate complex health issues to diverse audiences",
+      "Strengthened capacity for effective health policy advocacy through media"
+    ],
+    logo: "/images/clients/logos/amref.png",
+    logoAlt: "AMREF Health Africa Logo",
+    detailedDescription: `Kemnan Consultancy provided specialized media training for AMREF Health Africa's advocacy team, focusing on enhancing their capacity to effectively communicate complex health issues and advocate for policy change through various media platforms.
+
+The training program was tailored to address the specific needs of health advocacy professionals, covering techniques for simplifying complex medical and public health concepts for general audiences. Participants learned how to develop compelling narratives around health equity, community health systems, and disease prevention that resonate with both media and policymakers.
+
+Through intensive practical sessions, AMREF's advocacy team members gained skills in media interview techniques, op-ed writing, broadcast appearances, and social media advocacy. The training emphasized the importance of evidence-based messaging while maintaining emotional connection with audiences, equipping the team to more effectively advance AMREF's mission of health equity across Africa.`
   },
   {
     id: "wajir-county",

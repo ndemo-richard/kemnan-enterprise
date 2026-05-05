@@ -21,7 +21,7 @@ export const portfolioItems: PortfolioItem[] = [
     description: "Documentaries, TV commercials, and county-wide advertisements to increase public awareness on land rates and compliance",
     client: "Nairobi City County Government",
     location: "Nairobi, Kenya",
-    year: "2023",
+    year: "2017 -2022",
     category: "Government",
     services: ["Media Production", "Media Placement", "Strategic Communications", "Content Development"],
     impact: [
@@ -43,7 +43,7 @@ The strategic media placement was carefully timed and targeted to maximize impac
     description: "Regional media placement services highlighting CIFF-funded development projects across multiple African countries",
     client: "Dalberg / Children's Investment Fund Foundation (CIFF)",
     location: "Multiple Countries",
-    year: "2023",
+    year: "2023 - 2026",
     category: "International Development",
     services: ["Regional Media Placement", "Media Relations", "Strategic Communications"],
     impact: [
@@ -65,7 +65,7 @@ The campaign successfully enhanced visibility of CIFF's impact across multiple c
     description: "Supporting women's rights campaign across four African countries through media relations and advocacy",
     client: "Coalition on Violence Against Women (COVAW)",
     location: "Multiple Countries",
-    year: "2022",
+    year: "2025",
     category: "Civil Society",
     services: ["Media Relations", "Advocacy Support", "Rapporteur Services", "Regional Media Placement"],
     impact: [
@@ -87,7 +87,7 @@ Kemnan Consultancy facilitated extensive regional media placement, ensuring sust
     description: "Production and strategic media placement for Africa's lion conservation awareness",
     client: "Born Free Foundation",
     location: "Regional (Africa)",
-    year: "2022",
+    year: "2024",
     category: "Conservation",
     services: ["Media Production", "Strategic Media Placement", "Digital Distribution", "Content Development"],
     impact: [
@@ -263,7 +263,7 @@ Through intensive practical sessions, AMREF's advocacy team members gained skill
     description: "Production and media placement for county government development showcase",
     client: "Wajir County Government",
     location: "Wajir, Kenya",
-    year: "2023",
+    year: "2024 - 2025",
     category: "Government",
     services: ["Documentary Production", "Media Placement", "Content Development", "Public Engagement"],
     impact: [

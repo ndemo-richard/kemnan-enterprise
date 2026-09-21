@@ -13,8 +13,12 @@ export interface PortfolioItem {
   logoAlt?: string;
   detailedDescription?: string; // Add detailed description field
 }
-
-export const portfolioItems: PortfolioItem[] = [
+// Get the latest year mentioned in a string like "2017 -2022" or "2026"
+function getEndYear(year: string): number {
+  const years = year.match(/\d{4}/g);
+  return years ? Math.max(...years.map(Number)) : 0;
+}
+ const unsortedItems: PortfolioItem[] = [
   {
     id: "nairobi-city-county",
     title: "Public Awareness Campaign on Land Rates Compliance",
@@ -302,7 +306,7 @@ Our media placement strategy ensured broad reach across Wajir County through loc
       "Developed a Media Perception Index measuring five dimensions of NG-CDF's media perception",
       "Provided evidence-based recommendations to strengthen media engagement, transparency, and communication"
     ],
-    logo: "/images/clients/logos/ngcdf.png",
+    logo: "/images/clients/logos/ngcdf.jpg",
     logoAlt: "NG-CDF Board Logo",
     detailedDescription: `Kemnan Consultancy supported the delivery of a comprehensive Media Perception Survey commissioned by the National Government Constituencies Development Fund (NG-CDF) Board. The study assessed how NG-CDF is understood, perceived, and covered within Kenya's media landscape, with a focus on transparency, knowledge, reputation, and media relationships.
 
@@ -313,6 +317,9 @@ The research also incorporated a review of media coverage and developed a compos
 The findings provided NG-CDF with evidence-based insights into its media perception and identified opportunities to strengthen media engagement, transparency, information sharing, stakeholder relationships, and strategic communication.`
   },
 ];
+export const portfolioItems: PortfolioItem[] = [...unsortedItems].sort(
+  (a, b) => getEndYear(b.year) - getEndYear(a.year)
+);
 
 export const portfolioCategories = [
   "All Projects",
@@ -320,7 +327,8 @@ export const portfolioCategories = [
   "International Development",
   "Civil Society",
   "Conservation",
-  "Non-Profit"
+  "Non-Profit",
+  "Research & Consulting"
 ];
 
 // Helper function to get portfolio item by ID

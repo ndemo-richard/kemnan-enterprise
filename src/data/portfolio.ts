@@ -278,7 +278,40 @@ Through intensive practical sessions, AMREF's advocacy team members gained skill
 The documentary series featured detailed coverage of various development projects including infrastructure development, healthcare improvements, educational initiatives, and water resource management. We employed a storytelling approach that highlighted both the challenges faced and the achievements made, providing a balanced perspective that built trust with viewers.
 
 Our media placement strategy ensured broad reach across Wajir County through local television stations, community screenings, and digital platforms. The documentaries served as a powerful communication tool that not only informed residents about government initiatives but also fostered a sense of shared progress and community pride in the county's development journey.`
-  }
+  },
+    {
+    id: "ngcdf-media-perception-survey",
+    title: "NG-CDF Media Perception Survey",
+    description: "Comprehensive media perception research assessing how the National Government Constituencies Development Fund is understood, perceived, and covered by Kenya's media",
+    client: "National Government Constituencies Development Fund (NG-CDF) Board",
+    location: "Kenya",
+    year: "2026",
+    category: "Government",
+    services: [
+      "Media Research",
+      "Media Monitoring",
+      "Stakeholder Engagement",
+      "Data Collection",
+      "Data Analysis",
+      "Strategic Communications"
+    ],
+    impact: [
+      "Assessed media perceptions of NG-CDF among 89 media practitioners across Kenya",
+      "Incorporated insights from 7 Key Informant Interviews with senior media editors and managers",
+      "Reviewed media coverage to identify key perception, communication, and engagement trends",
+      "Developed a Media Perception Index measuring five dimensions of NG-CDF's media perception",
+      "Provided evidence-based recommendations to strengthen media engagement, transparency, and communication"
+    ],
+    logo: "/images/clients/logos/ngcdf.png",
+    logoAlt: "NG-CDF Board Logo",
+    detailedDescription: `Kemnan Consultancy supported the delivery of a comprehensive Media Perception Survey commissioned by the National Government Constituencies Development Fund (NG-CDF) Board. The study assessed how NG-CDF is understood, perceived, and covered within Kenya's media landscape, with a focus on transparency, knowledge, reputation, and media relationships.
+
+The study adopted a mixed-methods research approach combining desk review, structured quantitative surveying, and qualitative Key Informant Interviews. The survey analysed responses from 89 media practitioners across national, regional, and county-level media, complemented by seven interviews with senior editors and media managers from leading Kenyan media organizations.
+
+The research also incorporated a review of media coverage and developed a composite Media Perception Index (MPI) covering awareness, transparency and accountability, quality and fairness of coverage, media-NG-CDF relationships and communication, and likelihood of future positive coverage.
+
+The findings provided NG-CDF with evidence-based insights into its media perception and identified opportunities to strengthen media engagement, transparency, information sharing, stakeholder relationships, and strategic communication.`
+  },
 ];
 
 export const portfolioCategories = [
